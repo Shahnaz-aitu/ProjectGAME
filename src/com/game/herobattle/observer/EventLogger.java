@@ -1,6 +1,5 @@
-package com.game.herobattle.engine;
+package com.game.herobattle.observer;
 
-import com.game.herobattle.observer.IObserver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,4 @@ public class EventLogger implements IObserver {
         log.add(line);
         System.out.println("[MESSAGE] " + line);
     }
-
-    public List<String> getLog() { return log; }
 }

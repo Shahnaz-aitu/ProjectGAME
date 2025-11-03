@@ -4,7 +4,7 @@ import com.game.herobattle.attacks.AttackStrategy;
 import com.game.herobattle.attacks.MagicAttack;
 import com.game.herobattle.enemies.Enemy;
 import com.game.herobattle.engine.GameEngine;
-import com.game.herobattle.engine.GameEvent;
+import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.observer.IObserver;
 import com.game.herobattle.observer.ISubject;
 
@@ -63,14 +63,14 @@ public abstract class Hero implements ISubject {
     }
 
     public abstract void useSpecial(GameEngine engine);
-
-    @Override public void registerObserver(IObserver o) { if (!observers.contains(o)) observers.add(o); }
-    @Override public void unregisterObserver(IObserver o) { observers.remove(o); }
+    @Override public void registerObserver(IObserver o) {
+        if (!observers.contains(o)) observers.add(o); }
+    @Override public void unregisterObserver(IObserver o) {
+        observers.remove(o); }
     @Override public void notifyObservers(GameEvent event) {
         for (IObserver o : new ArrayList<>(observers)) o.onEvent(event);
         GameEngine.getInstance().broadcast(event);
     }
-
     public void applyStatus(String stunned, int i) {
     }
 }

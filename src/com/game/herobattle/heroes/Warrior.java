@@ -2,7 +2,7 @@ package com.game.herobattle.heroes;
 
 import com.game.herobattle.attacks.MeleeAttack;
 import com.game.herobattle.engine.GameEngine;
-import com.game.herobattle.engine.GameEvent;
+import com.game.herobattle.observer.GameEvent;
 
 public class Warrior extends Hero {
     public Warrior(String ownerName) {

@@ -1,6 +1,6 @@
 package com.game.herobattle.decorators;
 
-import com.game.herobattle.engine.GameEvent;
+import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.heroes.Hero;
 
 public class ShieldDecorator extends HeroDecorator {
@@ -11,7 +11,6 @@ public class ShieldDecorator extends HeroDecorator {
         this.shieldHp = shieldHp;
         notifyObservers(new GameEvent(inner.getName(), "gained shield of " + shieldHp + " HP"));
     }
-
     @Override
     public void takeDamage(int dmg) {
         if (shieldHp > 0) {

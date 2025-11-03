@@ -12,7 +12,6 @@ public class UserManager {
     public UserManager(Scanner scanner) {
         this.scanner = scanner;
     }
-
     public static class User {
         private final String name;
         private final int age;
@@ -25,7 +24,6 @@ public class UserManager {
         }
 
         public String getName() { return name; }
-        public int getAge() { return age; }
         public String getPassword() { return password; }
     }
 

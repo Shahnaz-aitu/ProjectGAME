@@ -1,11 +1,10 @@
 package com.game.herobattle.heroes;
 
 import com.game.herobattle.attacks.RangedAttack;
-import com.game.herobattle.engine.EventLogger;
+import com.game.herobattle.observer.EventLogger;
 import com.game.herobattle.engine.GameEngine;
-import com.game.herobattle.engine.GameEvent;
+import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.observer.*;
-
 import java.util.Scanner;
 
 public class Princess extends Hero {

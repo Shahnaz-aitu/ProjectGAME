@@ -15,7 +15,6 @@ public abstract class GameEngine implements ISubject {
     private static final GameEngine instance = new GameEngine() {
         @Override
         public void notifyObservers(GameEvent event) {
-
         }
     };
     public static GameEngine getInstance() { return instance; }
@@ -25,8 +24,6 @@ public abstract class GameEngine implements ISubject {
     private final List<Hero> allies = new ArrayList<>();
     private Hero player;
     private Scanner scanner;
-
-    private GameEngine() {}
 
     public void setScanner(Scanner scanner) { this.scanner = scanner; }
     public Scanner getScanner() { return scanner; }
@@ -100,7 +97,7 @@ public abstract class GameEngine implements ISubject {
         if (pick.equals("1")) player.heal(player.getMaxHp());
         else if (pick.equals("2")) {
             Hero buffed = new BuffDecorator(player, 1.25);
-            this.player = buffed; // simple replacement (careful with observers)
+            this.player = buffed;
             broadcast(new GameEvent("Engine", "You received a damage buff."));
         }
         List<Enemy> boss = new ArrayList<>();

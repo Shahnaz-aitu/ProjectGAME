@@ -50,12 +50,12 @@ public class Demo {
                     }
                     System.out.println("Choose hero: mage / warrior / archer / princess");
                     System.out.print("> ");
-                    String type = sc.nextLine().trim().toLowerCase();
+                    String type = sc.nextLine().toLowerCase();
                     try {
                         chosen = HeroCreator.create(type, currentUser);
                         System.out.println("You chose: " + chosen.getName());
                         System.out.println("Add extra: shield / buff / none ?");
-                        String extra = sc.nextLine().trim().toLowerCase();
+                        String extra = sc.nextLine().toLowerCase();
                         if (extra.equals("shield")) {
                             chosen = new ShieldDecorator(chosen, 30);
                         } else if (extra.equals("buff")) {
@@ -80,6 +80,5 @@ public class Demo {
                     System.out.println("Unknown command.");
             }
         }
-        sc.close();
     }
 }

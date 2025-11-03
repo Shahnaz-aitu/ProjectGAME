@@ -1,4 +1,4 @@
-package com.game.herobattle.engine;
+package com.game.herobattle.observer;
 
 public class GameEvent {
     private final String source;

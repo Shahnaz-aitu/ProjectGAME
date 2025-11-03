@@ -3,7 +3,7 @@ package com.game.herobattle.heroes;
 import com.game.herobattle.attacks.Effect;
 import com.game.herobattle.attacks.RangedAttack;
 import com.game.herobattle.engine.GameEngine;
-import com.game.herobattle.engine.GameEvent;
+import com.game.herobattle.observer.GameEvent;
 
 public class Archer extends Hero {
     private boolean canVanish = true;
