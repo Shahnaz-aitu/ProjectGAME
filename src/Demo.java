@@ -3,11 +3,12 @@ import com.game.herobattle.decorators.BuffDecorator;
 import com.game.herobattle.decorators.ShieldDecorator;
 import com.game.herobattle.engine.GameEngine;
 import com.game.herobattle.heroes.Hero;
-import com.game.herobattle.heroes.HeroFactory;
+import com.game.herobattle.heroes.HeroCreator;
 
 import java.util.Scanner;
 
 public class Demo {
+
     public void Start() {
         Scanner sc = new Scanner(System.in);
         UserManager um = new UserManager(sc);
@@ -51,9 +52,8 @@ public class Demo {
                     System.out.print("> ");
                     String type = sc.nextLine().trim().toLowerCase();
                     try {
-                        chosen = HeroFactory.create(type, currentUser);
+                        chosen = HeroCreator.create(type, currentUser);
                         System.out.println("You chose: " + chosen.getName());
-                        // optional: ask to add shield or buff
                         System.out.println("Add extra: shield / buff / none ?");
                         String extra = sc.nextLine().trim().toLowerCase();
                         if (extra.equals("shield")) {

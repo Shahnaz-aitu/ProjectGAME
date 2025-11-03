@@ -5,7 +5,7 @@ import com.game.herobattle.engine.GameEvent;
 import com.game.herobattle.heroes.Hero;
 
 public class Dragon extends Enemy {
-    public Dragon() { super("Dragon", 120); }
+    public Dragon() { super("Dragon", 100); }
 
     @Override
     public void performAction(Hero hero) {

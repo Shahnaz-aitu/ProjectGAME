@@ -1,6 +1,6 @@
 package com.game.herobattle.heroes;
 
-public class HeroFactory {
+public class HeroCreator {
     public static Hero create(String type, String ownerName) {
         switch (type.toLowerCase()) {
             case "mage": return new Mage(ownerName);

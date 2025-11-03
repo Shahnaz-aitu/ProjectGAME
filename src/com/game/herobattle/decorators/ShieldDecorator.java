@@ -18,7 +18,7 @@ public class ShieldDecorator extends HeroDecorator {
             int absorbed = Math.min(shieldHp, dmg);
             shieldHp -= absorbed;
             dmg -= absorbed;
-            notifyObservers(new GameEvent(inner.getName(), "shield absorbed " + absorbed + " damage. Shield left=" + shieldHp));
+            notifyObservers(new GameEvent(inner.getName(), "shield absorbed " + absorbed + " damage."));
         }
         if (dmg > 0) inner.takeDamage(dmg);
     }
