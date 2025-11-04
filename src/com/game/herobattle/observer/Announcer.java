@@ -1,6 +1,6 @@
 package com.game.herobattle.observer;
 
-public class Announcer implements IObserver {
+public class Announcer implements Observer {
     @Override
     public void onEvent(GameEvent event) {
         System.out.println("[Announcer] " + event.getSource() + ": " + event.getMessage());

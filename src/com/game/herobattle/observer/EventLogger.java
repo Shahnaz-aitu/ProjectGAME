@@ -3,7 +3,7 @@ package com.game.herobattle.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventLogger implements IObserver {
+public class EventLogger implements Observer {
     private static final EventLogger instance = new EventLogger();
     private final List<String> log = new ArrayList<>();
 

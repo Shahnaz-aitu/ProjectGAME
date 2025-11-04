@@ -5,19 +5,19 @@ import com.game.herobattle.attacks.MagicAttack;
 import com.game.herobattle.enemies.Enemy;
 import com.game.herobattle.engine.GameEngine;
 import com.game.herobattle.observer.GameEvent;
-import com.game.herobattle.observer.IObserver;
-import com.game.herobattle.observer.ISubject;
+import com.game.herobattle.observer.Observer;
+import com.game.herobattle.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Hero implements ISubject {
+public abstract class Hero implements Subject {
     protected final String name;
     protected int hp;
     protected final int maxHp;
     public int basePower;
     public AttackStrategy strategy;
-    public final List<IObserver> observers = new ArrayList<>();
+    public final List<Observer> observers = new ArrayList<>();
     protected final String ownerName;
 
     public Hero(String name, int maxHp, int basePower, AttackStrategy defaultStrat, String ownerName) {
@@ -63,12 +63,12 @@ public abstract class Hero implements ISubject {
     }
 
     public abstract void useSpecial(GameEngine engine);
-    @Override public void registerObserver(IObserver o) {
+    @Override public void registerObserver(Observer o) {
         if (!observers.contains(o)) observers.add(o); }
-    @Override public void unregisterObserver(IObserver o) {
+    @Override public void unregisterObserver(Observer o) {
         observers.remove(o); }
     @Override public void notifyObservers(GameEvent event) {
-        for (IObserver o : new ArrayList<>(observers)) o.onEvent(event);
+        for (Observer o : new ArrayList<>(observers)) o.onEvent(event);
         GameEngine.getInstance().broadcast(event);
     }
     public void applyStatus(String stunned, int i) {

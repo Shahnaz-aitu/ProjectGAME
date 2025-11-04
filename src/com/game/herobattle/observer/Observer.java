@@ -1,5 +1,5 @@
 package com.game.herobattle.observer;
 
-public interface IObserver {
+public interface Observer {
     void onEvent(GameEvent event);
 }

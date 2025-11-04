@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class GameEngine implements ISubject {
+public abstract class GameEngine implements Subject {
     private static final GameEngine instance = new GameEngine() {
         @Override
         public void notifyObservers(GameEvent event) {
@@ -19,7 +19,7 @@ public abstract class GameEngine implements ISubject {
     };
     public static GameEngine getInstance() { return instance; }
 
-    private final List<IObserver> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     private final List<Effect> heroEffects = new ArrayList<>();
     private final List<Hero> allies = new ArrayList<>();
     private Hero player;
@@ -34,10 +34,10 @@ public abstract class GameEngine implements ISubject {
         player.registerObserver(new Announcer());
     }
 
-    public void registerObserver(IObserver o) { if (!observers.contains(o)) observers.add(o); }
-    public void unregisterObserver(IObserver o) { observers.remove(o); }
+    public void registerObserver(Observer o) { if (!observers.contains(o)) observers.add(o); }
+    public void unregisterObserver(Observer o) { observers.remove(o); }
     public void broadcast(GameEvent event) {
-        for (IObserver o : new ArrayList<>(observers)) o.onEvent(event);
+        for (Observer o : new ArrayList<>(observers)) o.onEvent(event);
     }
 
     public void applyEffectToHero(Hero hero, Effect effect) {
@@ -139,7 +139,7 @@ public abstract class GameEngine implements ISubject {
                     player.useSpecial(this);
                     break;
                 case "change":
-                    if (parts.length < 2) { System.out.println("Specify melee/ranged/magic."); continue; }
+                    if (parts.length < 2) { System.out.println("Specify melee/ranged/magic.");continue; }
                     AttackStrategy s;
                     switch (parts[1].toLowerCase()) {
                         case "melee": s = new MeleeAttack(); break;
