@@ -1,4 +1,4 @@
-package com.game.herobattle.engine;
+package com.game.herobattle.singleton;
 
 import com.game.herobattle.attacks.*;
 import com.game.herobattle.decorators.*;
@@ -15,8 +15,7 @@ public abstract class GameEngine implements Subject {
     private static final GameEngine instance = new GameEngine() {
         @Override
         public void notifyObservers(GameEvent event) {
-        }
-    };
+        }};
     public static GameEngine getInstance() { return instance; }
 
     private final List<Observer> observers = new ArrayList<>();
@@ -26,8 +25,10 @@ public abstract class GameEngine implements Subject {
     private Scanner scanner;
     Scanner sc=new Scanner(System.in);
 
-    public void setScanner(Scanner scanner) { this.scanner = scanner; }
-    public Scanner getScanner() { return scanner; }
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner; }
+    public Scanner getScanner() {
+        return scanner; }
 
     public void setPlayer(Hero h) {
         this.player = h;

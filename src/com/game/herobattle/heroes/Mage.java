@@ -2,7 +2,7 @@ package com.game.herobattle.heroes;
 
 import com.game.herobattle.attacks.Effect;
 import com.game.herobattle.attacks.MagicAttack;
-import com.game.herobattle.engine.GameEngine;
+import com.game.herobattle.singleton.GameEngine;
 import com.game.herobattle.observer.GameEvent;
 
 public class Mage extends Hero {

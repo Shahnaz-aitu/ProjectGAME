@@ -1,7 +1,7 @@
 import com.game.herobattle.*;
 import com.game.herobattle.decorators.BuffDecorator;
 import com.game.herobattle.decorators.ShieldDecorator;
-import com.game.herobattle.engine.GameEngine;
+import com.game.herobattle.singleton.GameEngine;
 import com.game.herobattle.heroes.Hero;
 import com.game.herobattle.heroes.HeroCreator;
 
