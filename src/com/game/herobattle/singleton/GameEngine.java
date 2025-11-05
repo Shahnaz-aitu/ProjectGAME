@@ -139,7 +139,7 @@ public abstract class GameEngine implements Subject {
                     if (idx < 0 || idx >= enemies.size()) {
                         System.out.println("No such enemy."); continue; }
                     Enemy target = enemies.get(idx);
-                    AttackStrategy.GameCommand a = new AttackCommand(player, target);
+                    GameCommand a = new AttackCommand(player, target);
                     a.execute();
                     break;
                 case "special":
@@ -177,7 +177,7 @@ public abstract class GameEngine implements Subject {
                 if (enemies.isEmpty()) break;
                 if (ally.getHp() <= 0) continue;
                 Enemy t = enemies.get(0);
-                AttackStrategy.GameCommand ac = new AttackCommand(ally, t);
+                GameCommand ac = new AttackCommand(ally, t);
                 ac.execute();
             }
         }
