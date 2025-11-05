@@ -57,9 +57,9 @@ public class Demo {
                         System.out.println("Add extra: shield / buff / none ?");
                         String extra = sc.nextLine().toLowerCase();
                         if (extra.equals("shield")) {
-                            chosen = new ShieldDecorator(chosen, 30);
+                            chosen = new ShieldDecorator(chosen, 50);
                         } else if (extra.equals("buff")) {
-                            chosen = new BuffDecorator(chosen, 1.2);
+                            chosen = new BuffDecorator(chosen, 1.3);
                         }
                     } catch (IllegalArgumentException e) {
                         System.out.println("Unknown hero type.");

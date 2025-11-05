@@ -27,18 +27,8 @@ public abstract class Enemy {
         if (hp == 0) GameEngine.getInstance().broadcast(new GameEvent(name, "was defeated."));
     }
 
-    public void applyStatus(String key, int turns) {
-        statuses.put(key, turns);
-    }
-    public boolean hasStatus(String key) { return statuses.getOrDefault(key, 0) > 0; }
-    public void tickStatuses() {
-        statuses.entrySet().removeIf(e -> {
-            int v = e.getValue() - 1;
-            if (v <= 0) return true;
-            statuses.put(e.getKey(), v);
-            return false;
-        });
-    }
+    public boolean hasStatus(String key) {
+        return statuses.getOrDefault(key, 0) > 0; }
 
     public abstract void performAction(Hero hero);
 }
