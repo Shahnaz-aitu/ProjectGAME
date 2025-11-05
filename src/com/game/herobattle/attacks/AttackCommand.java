@@ -7,7 +7,9 @@ public class AttackCommand implements AttackStrategy.GameCommand {
     private final Hero hero;
     private final Enemy target;
 
-    public AttackCommand(Hero hero, Enemy target) { this.hero = hero; this.target = target; }
+    public AttackCommand(Hero hero, Enemy target) {
+        this.hero = hero;
+        this.target = target; }
 
     @Override
     public void execute() {

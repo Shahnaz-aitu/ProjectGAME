@@ -24,6 +24,7 @@ public abstract class GameEngine implements Subject {
     private final List<Hero> allies = new ArrayList<>();
     private Hero player;
     private Scanner scanner;
+    Scanner sc=new Scanner(System.in);
 
     public void setScanner(Scanner scanner) { this.scanner = scanner; }
     public Scanner getScanner() { return scanner; }
@@ -34,8 +35,10 @@ public abstract class GameEngine implements Subject {
         player.registerObserver(new Announcer());
     }
 
-    public void registerObserver(Observer o) { if (!observers.contains(o)) observers.add(o); }
-    public void unregisterObserver(Observer o) { observers.remove(o); }
+    public void registerObserver(Observer o) {
+        if (!observers.contains(o)) observers.add(o); }
+    public void unregisterObserver(Observer o) {
+        observers.remove(o); }
     public void broadcast(GameEvent event) {
         for (Observer o : new ArrayList<>(observers)) o.onEvent(event);
     }
@@ -127,10 +130,13 @@ public abstract class GameEngine implements Subject {
 
             switch (cmd) {
                 case "attack":
-                    if (parts.length < 2) { System.out.println("Specify index."); continue; }
+                    if (parts.length < 2) {
+                        System.out.println("Specify index."); continue; }
                     int idx;
-                    try { idx = Integer.parseInt(parts[1]) - 1; } catch (Exception e) { System.out.println("Bad index."); continue; }
-                    if (idx < 0 || idx >= enemies.size()) { System.out.println("No such enemy."); continue; }
+                    try { idx = Integer.parseInt(parts[1]) - 1; } catch (Exception e) {
+                        System.out.println("Bad index."); continue; }
+                    if (idx < 0 || idx >= enemies.size()) {
+                        System.out.println("No such enemy."); continue; }
                     Enemy target = enemies.get(idx);
                     AttackStrategy.GameCommand a = new AttackCommand(player, target);
                     a.execute();

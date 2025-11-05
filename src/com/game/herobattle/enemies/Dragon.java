@@ -11,7 +11,7 @@ public class Dragon extends Enemy {
     public void performAction(Hero hero) {
         if (!isAlive()) return;
         if (Math.random() < 0.4) {
-            int dmg = 25;
+            int dmg = (int) Math.random()+10;
             GameEngine.getInstance().broadcast(new GameEvent(name, "breathes fire for " + dmg));
             hero.takeDamage(dmg);
         } else {

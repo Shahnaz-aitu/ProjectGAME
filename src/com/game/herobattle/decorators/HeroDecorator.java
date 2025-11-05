@@ -13,8 +13,16 @@ public abstract class HeroDecorator extends Hero {
         this.inner = inner;
     }
 
-    @Override public void useSpecial(GameEngine engine) { inner.useSpecial(engine); }
-    @Override public void registerObserver(Observer o) { inner.registerObserver(o); }
-    @Override public void unregisterObserver(Observer o) { inner.unregisterObserver(o); }
-    @Override public void notifyObservers(GameEvent event) { inner.notifyObservers(event); }
+    @Override
+    public void useSpecial(GameEngine engine) {
+        inner.useSpecial(engine); }
+    @Override
+    public void registerObserver(Observer o) {
+        inner.registerObserver(o); }
+    @Override
+    public void unregisterObserver(Observer o) {
+        inner.unregisterObserver(o); }
+    @Override
+    public void notifyObservers(GameEvent event) {
+        inner.notifyObservers(event); }
 }

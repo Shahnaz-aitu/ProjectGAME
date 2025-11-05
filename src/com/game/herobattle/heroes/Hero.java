@@ -63,6 +63,7 @@ public abstract class Hero implements Subject {
     }
 
     public abstract void useSpecial(GameEngine engine);
+
     @Override public void registerObserver(Observer o) {
         if (!observers.contains(o)) observers.add(o); }
     @Override public void unregisterObserver(Observer o) {
