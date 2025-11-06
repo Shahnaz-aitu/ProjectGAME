@@ -1,7 +1,7 @@
 package com.game.herobattle.observer;
 
 public interface Subject {
-    void registerObserver(Observer o);
-    void unregisterObserver(Observer o);
+    void registerObserver(Observer observer);
+    void unregisterObserver(Observer observer);
     void notifyObservers(GameEvent event);
 }

@@ -3,7 +3,7 @@ package com.game.herobattle.heroes;
 import com.game.herobattle.attacks.AttackStrategy;
 import com.game.herobattle.attacks.MagicAttack;
 import com.game.herobattle.enemies.Enemy;
-import com.game.herobattle.singleton.GameEngine;
+import com.game.herobattle.observer.GameEngine;
 import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.observer.Observer;
 import com.game.herobattle.observer.Subject;
@@ -34,9 +34,9 @@ public abstract class Hero implements Subject {
     public int getMaxHp() { return maxHp; }
     public String getOwnerName() { return ownerName; }
 
-    public void changeStrategy(AttackStrategy s) {
-        this.strategy = s;
-        notifyObservers(new GameEvent(name, "changed strategy to " + s.getName()));
+    public void changeStrategy(AttackStrategy strategy) {
+        this.strategy = strategy;
+        notifyObservers(new GameEvent(name, "changed strategy to " + strategy.getName()));
     }
 
     public void attack(Enemy target) {

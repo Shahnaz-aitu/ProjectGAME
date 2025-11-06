@@ -1,6 +1,6 @@
 package com.game.herobattle.enemies;
 
-import com.game.herobattle.singleton.GameEngine;
+import com.game.herobattle.observer.GameEngine;
 import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.heroes.Hero;
 
@@ -10,7 +10,8 @@ public class Goblin extends Enemy {
     @Override
     public void performAction(Hero hero) {
         if (!isAlive()) return;
-        if (hasStatus("stunned")) { GameEngine.getInstance().broadcast(new GameEvent(name, "is stunned and skips turn.")); return; }
+        if (hasStatus("stunned")) {
+            GameEngine.getInstance().broadcast(new GameEvent(name, "is stunned and skips turn.")); return; }
         int dmg = 6;
         if (GameEngine.getInstance().heroHasEffect(hero, "fly")) {
             GameEngine.getInstance().broadcast(new GameEvent(name, "misses because hero is flying."));

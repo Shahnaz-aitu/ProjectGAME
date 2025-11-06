@@ -1,10 +1,9 @@
-package com.game.herobattle.singleton;
+package com.game.herobattle.observer;
 
 import com.game.herobattle.attacks.*;
 import com.game.herobattle.decorators.*;
 import com.game.herobattle.enemies.*;
 import com.game.herobattle.heroes.*;
-import com.game.herobattle.observer.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,35 +30,35 @@ public abstract class GameEngine implements Subject {
     public Scanner getScanner() {
         return scanner; }
 
-    public void setPlayer(Hero h) {
-        this.player = h;
+    public void setPlayer(Hero hero) {
+        this.player = hero;
         player.registerObserver(EventLogger.getInstance());
         player.registerObserver(new Announcer());
     }
 
-    public void registerObserver(Observer o) {
-        if (!observers.contains(o)) observers.add(o); }
-    public void unregisterObserver(Observer o) {
-        observers.remove(o); }
+    public void registerObserver(Observer observer) {
+        if (!observers.contains(observer)) observers.add(observer); }
+    public void unregisterObserver(Observer observer) {
+        observers.remove(observer); }
     public void broadcast(GameEvent event) {
-        for (Observer o : new ArrayList<>(observers)) o.onEvent(event);
+        for (Observer observer : new ArrayList<>(observers)) observer.onEvent(event);
     }
 
     public void applyEffectToHero(Hero hero, Effect effect) {
         heroEffects.add(effect);
-        broadcast(new GameEvent("Effect", hero.getName() + " gets " + effect.name + " for " + effect.turns + " turns"));
+        broadcast(new GameEvent("Effect", hero.getName() + " gets " + effect.effectName + " for " + effect.turns + " turns"));
     }
 
     public boolean heroHasEffect(Hero hero, String name) {
-        for (Effect e : new ArrayList<>(heroEffects)) {
-            if (e.name.equals(name) && e.turns > 0) return true;
+        for (Effect effect : new ArrayList<>(heroEffects)) {
+            if (effect.effectName.equals(name) && effect.turns > 0) return true;
         }
         return false;
     }
 
-    public void addAlly(Hero h) {
-        allies.add(h);
-        broadcast(new GameEvent("Ally", h.getName() + " joined as ally."));
+    public void addAlly(Hero hero) {
+        allies.add(hero);
+        broadcast(new GameEvent("Ally", hero.getName() + " joined as ally."));
     }
 
     public Hero getFirstAliveEnemy() {
@@ -69,10 +68,10 @@ public abstract class GameEngine implements Subject {
     private void tickEffects() {
         Iterator<Effect> it = heroEffects.iterator();
         while (it.hasNext()) {
-            Effect e = it.next();
-            e.turns--;
-            if (e.turns <= 0) {
-                broadcast(new GameEvent("Effect", "Effect " + e.name + " expired"));
+            Effect effect = it.next();
+            effect.turns--;
+            if (effect.turns <= 0) {
+                broadcast(new GameEvent("Effect", "Effect " + effect.effectName + " expired"));
                 it.remove();
             }
         }
@@ -129,22 +128,22 @@ public abstract class GameEngine implements Subject {
                         System.out.println("Specify melee/ranged/magic.");
                         continue;
                     }
-                    AttackStrategy s;
+                    AttackStrategy strategy;
                     switch (parts[1].toLowerCase()) {
                         case "melee":
-                            s = new MeleeAttack();
+                            strategy = new MeleeAttack();
                             break;
                         case "ranged":
-                            s = new RangedAttack();
+                            strategy = new RangedAttack();
                             break;
                         case "magic":
-                            s = new MagicAttack();
+                            strategy = new MagicAttack();
                             break;
                         default:
                             System.out.println("Unknown strategy.");
                             continue;
                     }
-                    player.changeStrategy(s);
+                    player.changeStrategy(strategy);
                     break;
                 case "status":
                     System.out.println(player.getName() + " HP=" + player.getHp() + "/" + player.getMaxHp() + ", Strategy=" + player.strategy.getName());
@@ -185,7 +184,8 @@ public abstract class GameEngine implements Subject {
         goblins.add(new Goblin());
         goblins.add(new Goblin());
         battleLoop(goblins, sc);
-        if (player.getHp() <= 0) { broadcast(new GameEvent("Game", "Player died in goblins wave.")); return; }
+        if (player.getHp() <= 0) {
+            broadcast(new GameEvent("Game", "Player died in goblins wave.")); return; }
 
         List<Enemy> floods = new ArrayList<>();
         floods.add(new Flood());
@@ -207,5 +207,10 @@ public abstract class GameEngine implements Subject {
 
         if (player.getHp() > 0) broadcast(new GameEvent("Game", "You won the campaign!"));
         else broadcast(new GameEvent("Game", "You lost the campaign..."));
+    }
+    public void resultGame(Hero player) {
+        if (player.getHp() <= 0) {
+            broadcast(new GameEvent("Game", "You lost the campaign..."));
+        }
     }
 }

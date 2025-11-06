@@ -15,7 +15,7 @@ public class BuffDecorator extends HeroDecorator {
 
     @Override
     public void attack(Enemy target) {
-        int dmg = (int) (inner.strategy.computeDamage(inner.basePower) * multiplier);
+        int dmg = (int)(inner.strategy.computeDamage(inner.basePower) * multiplier);
         notifyObservers(new GameEvent(inner.getName(), "attacks (buffed) " + target.getName() + " for " + dmg));
         target.takeDamage(dmg);
     }

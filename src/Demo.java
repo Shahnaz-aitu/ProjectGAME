@@ -1,7 +1,7 @@
 import com.game.herobattle.*;
 import com.game.herobattle.decorators.BuffDecorator;
 import com.game.herobattle.decorators.ShieldDecorator;
-import com.game.herobattle.singleton.GameEngine;
+import com.game.herobattle.observer.GameEngine;
 import com.game.herobattle.heroes.Hero;
 import com.game.herobattle.heroes.HeroCreator;
 
@@ -57,7 +57,7 @@ public class Demo {
                         System.out.println("Add extra: shield / buff / none ?");
                         String extra = sc.nextLine().toLowerCase();
                         if (extra.equals("shield")) {
-                            chosen = new ShieldDecorator(chosen, 50);
+                            chosen = new ShieldDecorator(chosen, 30);
                         } else if (extra.equals("buff")) {
                             chosen = new BuffDecorator(chosen, 1.3);
                         }

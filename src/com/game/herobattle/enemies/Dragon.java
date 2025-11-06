@@ -1,6 +1,6 @@
 package com.game.herobattle.enemies;
 
-import com.game.herobattle.singleton.GameEngine;
+import com.game.herobattle.observer.GameEngine;
 import com.game.herobattle.observer.GameEvent;
 import com.game.herobattle.heroes.Hero;
 
